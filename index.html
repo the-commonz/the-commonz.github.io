@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tapfolio · Irine Jhane</title>
+<title>Commonz · Irine Jhane</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#6b1d27">
+<link rel="apple-touch-icon" href="icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -94,7 +97,7 @@ footer{padding:2rem 0 3rem;text-align:center;font-size:.85rem;color:var(--muted)
 <main class="wrap">
   <section class="hero" id="top">
     <div class="brand">Smart NFC business cards by Irine Jhane</div>
-    <div class="photo"><div id="photo" role="img" aria-label="A hand holding a Tapfolio card"></div></div>
+    <div class="photo"><div id="photo" role="img" aria-label="A hand holding a Commonz card"></div></div>
     <h1 id="name"></h1>
     <p class="tag" id="tagline"></p>
     <div class="btns">
@@ -154,12 +157,12 @@ var IMG = {"hero": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGB
 /* ===== EDIT YOUR DETAILS HERE ===== */
 var CONFIG = {
   name: "Irine Jhane",
-  brand: "Tapfolio",
-  title: "Founder, Tapfolio",
-  tagline: "Tap. Connect. Share.",
+  brand: "Commonz",
+  title: "Founder, Commonz",
+  tagline: "Share what connects us.",
   photo: IMG.hero, /* leave "" to show the T monogram instead */
   about: [
-    "Tapfolio makes personalized NFC-enabled smart cards that turn a traditional business card into something interactive. One tap of a smartphone shares your contact details, social accounts, portfolio, website and more.",
+    "Commonz makes personalized NFC-enabled smart cards that turn a traditional business card into something interactive. One tap of a smartphone shares your contact details, social accounts, portfolio, website and more.",
     "By combining technology, creativity and personalization, I help individuals and businesses connect, communicate and build professional relationships in a smarter, faster way."
   ],
   facts: ["NFC-enabled", "Fully personalized", "Works with any smartphone"],
@@ -185,13 +188,13 @@ var CONFIG = {
     {title:"Glossy white", text:"Clean, bright and polished.", image:"white"},
     {title:"Sticker form", text:"The same tap-to-share profile, ready to stick on your phone case or any smooth surface."}
   ],
-  varietiesIntro: "Every Tapfolio is NFC-enabled and personalized for you. Choose the form that fits how you work.",
+  varietiesIntro: "Every Commonz is NFC-enabled and personalized for you. Choose the form that fits how you work.",
   varieties: [
     {title:"Matte black", text:"A smooth, understated finish with a quiet, professional look.", image:IMG.black},
     {title:"Glossy white", text:"A bright, polished finish that stands out in any hand.", image:IMG.white},
     {title:"Sticker form", text:"A slim NFC sticker for your phone case, notebook or an existing card.", image:IMG.sticker}
   ],
-  ctaTitle: "Ready for your own Tapfolio?",
+  ctaTitle: "Ready for your own Commonz?",
   ctaText: "Order a card, ask about team packages, or just say hello. I’ll get back to you personally."
 };
 /* ================================== */
@@ -249,16 +252,16 @@ $('vars').innerHTML = C.varieties.map(function(v){
 }).join('');
 $('ctaTitle').textContent = C.ctaTitle;
 $('ctaText').textContent = C.ctaText;
-$('ctaMail').href = 'mailto:'+C.email+'?subject='+encodeURIComponent('Tapfolio card order');
+$('ctaMail').href = 'mailto:'+C.email+'?subject='+encodeURIComponent('Commonz card order');
 $('ctaCall').href = 'tel:'+tel;
-$('foot').textContent = '© '+new Date().getFullYear()+' '+C.name+' · Tapfolio';
+$('foot').textContent = '© '+new Date().getFullYear()+' '+C.name+' · Commonz';
 
 /* save contact (vCard) */
 var tt;
 function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},3200)}
 function vcard(){
   var p = C.name.split(' '), last = p.length>1?p.pop():'', first = p.join(' ');
-  return ['BEGIN:VCARD','VERSION:3.0','N:'+last+';'+first+';;;','FN:'+C.name,'ORG:Tapfolio','TITLE:'+C.title,
+  return ['BEGIN:VCARD','VERSION:3.0','N:'+last+';'+first+';;;','FN:'+C.name,'ORG:Commonz','TITLE:'+C.title,
     'TEL;TYPE=CELL:'+C.phone,'TEL;TYPE=CELL:'+C.phone2,'EMAIL:'+C.email,C.website?'URL:'+C.website:'','ADR;TYPE=WORK:;;'+C.location+';;;;','END:VCARD']
     .filter(Boolean).join('\r\n');
 }
@@ -276,6 +279,13 @@ async function save(){
   catch(e){ toast('Tap the phone or email above to save me manually.'); }
 }
 $('saveBtn').onclick = save; $('saveBtn2').onclick = save;
+</script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
 </script>
 </body>
 </html>
